@@ -45,7 +45,7 @@ export function Totals() {
 
   if (isLoading) {
     return (
-      <span className="text-center text-gray-600 animate-pulse duration-1000">
+      <span className="text-center text-gray-600 animate-pulse font-semibold">
         Loading Totals...
       </span>
     );
@@ -58,7 +58,9 @@ export function Totals() {
   if (isRefetching) {
     return (
       <div className="">
-        Refreshing ....
+        <span className="text-center text-gray-600 animate-pulse font-semibold">
+          Refreshing...
+        </span>
         <SkeletonLoader />
       </div>
     );
