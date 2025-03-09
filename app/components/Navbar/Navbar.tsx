@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { SignedIn, SignOutButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SmallLogo } from "../Logo/Logo";
