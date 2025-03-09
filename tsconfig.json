@@ -27,7 +27,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/components/Totals"
+    "app/components/Totals",
+    "test.mjs"
   ],
   "exclude": ["node_modules"]
 }
