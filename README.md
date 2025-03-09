@@ -23,4 +23,5 @@ Clerk: User authentication and management.
 Tailwind CSS: Utility-first CSS framework.
 Lucide React: Icon library.
 Sonner: Toast notification library.
-SQLite: Database.
+SQLite: Database. (development)
+NEON Postgres : Database (production)
