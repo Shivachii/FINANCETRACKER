@@ -15,23 +15,23 @@ export default async function Home() {
   const user = await currentUser();
 
   return (
-    <main className="p-4 flex flex-col gap-5 w-full">
+    <main className="p-4 sm:p-6 md:p-8 flex flex-col gap-6 w-full">
       {/* WELCOME MESSAGE */}
-      <div className="text-2xl md:text-3xl   flex flex-row flex-wrap items-center gap-4 justify-between">
+      <div className="text-xl md:text-3xl flex flex-wrap items-center gap-4 justify-between">
         <span className="font-bold">
-          {/* MIGHT REMOVE NAME */}
-          Hello {user?.firstName} 👋 , welcome back
+          Hello {user?.firstName} 👋, welcome back
         </span>
+
         {/* BUTTONS */}
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-wrap gap-2">
           <CreateTransactionDialog
             type="income"
             trigger={
-              <Button className="text-base  border-emerald-500 bg-emerald-900 text-white hover:bg-emerald-700 p-2 flex items-center rounded-md">
+              <Button className="text-base border-emerald-500 bg-emerald-900 text-white hover:bg-emerald-700 p-2 flex items-center rounded-md">
                 Add Income
               </Button>
             }
-          ></CreateTransactionDialog>
+          />
           <CreateTransactionDialog
             type="expense"
             trigger={
@@ -39,31 +39,36 @@ export default async function Home() {
                 Add Expense
               </Button>
             }
-          ></CreateTransactionDialog>
+          />
         </div>
       </div>
+
       {/* Totals */}
       <div className="my-5">
         <Totals />
       </div>
-      <h1 className=" text-2xl md:text-3xl  font-bold ">Overview</h1>
+
+      <h1 className="text-2xl md:text-3xl font-bold">Overview</h1>
+
       {/* INTERPRETATION */}
-      {/* <div className="">
-        <h1 className="font-bold  underline underline-offset-8 decoration-2 ">
-          Your Stats
-        </h1>
-        <TransactionsBarChart />
-      </div> */}
-      <div className="flex flex-col">
-        {/*Transaction History */}
-        <div className="">
-          <span className=" font-bold  underline underline-offset-8 decoration-2 ">
+      {/* <div>
+      <h1 className="font-bold underline underline-offset-8 decoration-2">
+        Your Stats
+      </h1>
+      <TransactionsBarChart />
+    </div> */}
+
+      <div className="flex flex-col gap-6">
+        {/* Transaction History */}
+        <div className="overflow-x-auto">
+          <span className="text-lg md:text-2xl font-bold underline underline-offset-8 decoration-2">
             Your recent <span className="text-emerald-500">Incomes</span>
           </span>
           <IncomesDataTable />
         </div>
-        <div className="">
-          <span className="font-bold underline underline-offset-8 decoration-2">
+
+        <div className="overflow-x-auto">
+          <span className="text-lg md:text-2xl font-bold underline underline-offset-8 decoration-2">
             Your recent <span className="text-rose-500">Expenses</span>
           </span>
           <ExpensesDataTable />

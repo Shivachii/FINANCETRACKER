@@ -34,11 +34,6 @@ export function Totals() {
     queryFn: getExpensesAggregate,
   });
 
-  // const handleRefresh = () => {
-  //   refetchIncome();
-  //   refetchExpenses();
-  // };
-
   const isLoading = isIncomePending || isExpensesPending;
   const isError = isIncomeError || isExpensesError;
   const isRefetching = isRefetchingIncome || isRefetchingExpenses;
@@ -72,16 +67,16 @@ export function Totals() {
 
   return (
     <div className="flex flex-wrap justify-between items-center gap-3">
-      <div className="w-full grid grid-cols-1 md:grid-cols-3  space-x-3 space-y-3 md:space-y-0">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
         {/* INCOME */}
-        <Card className="flex flex-row ">
+        <Card className="flex flex-row w-full">
           <CardHeader className="">
             <CardTitle className="bg-green-300/50 rounded-md p-1">
               <TrendingUp width={60} height={60} />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1">
               <span className="text-slate-500 font-semibold">Total Income</span>
               <span className="font-semibold">
                 {formatCurrency(incomeTotal)}
@@ -89,15 +84,16 @@ export function Totals() {
             </div>
           </CardContent>
         </Card>
+
         {/* EXPENSES */}
-        <Card className="flex flex-row ">
-          <CardHeader className="">
+        <Card className="flex flex-row w-full">
+          <CardHeader>
             <CardTitle className="bg-red-300/50 rounded-md p-1">
               <TrendingDown width={60} height={60} />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1">
               <span className="text-slate-500 font-semibold">
                 Total Expenses
               </span>
@@ -107,15 +103,16 @@ export function Totals() {
             </div>
           </CardContent>
         </Card>
+
         {/* BALANCE */}
-        <Card className="flex flex-row ">
-          <CardHeader className="">
+        <Card className="flex flex-row w-full">
+          <CardHeader>
             <CardTitle className="bg-blue-300/50 rounded-md p-1">
               <Wallet width={60} height={60} />
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex flex-col gap-1 ">
+            <div className="flex flex-col gap-1">
               <span className="text-slate-500 font-semibold">
                 Total Balance
               </span>
@@ -124,9 +121,6 @@ export function Totals() {
           </CardContent>
         </Card>
       </div>
-      {/* <Button className="" onClick={handleRefresh} disabled={isRefetching}>
-        <RefreshCcw className={`${isRefetching ? "animate-spin " : ""}`} />
-      </Button> */}
     </div>
   );
 }
