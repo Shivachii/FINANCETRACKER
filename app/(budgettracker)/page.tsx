@@ -7,12 +7,11 @@ import IncomesDataTable from "../components/Transactions/IncomesTable";
 // import { TransactionsBarChart } from "../components/Charts/BarChart";
 
 export default async function Home() {
+  const user = await currentUser();
   const { userId } = await auth();
   if (!userId) {
     return <div>Sign in to view this page</div>;
   }
-
-  const user = await currentUser();
 
   return (
     <main className="p-4 sm:p-6 md:p-8 flex flex-col gap-6 w-full">

@@ -26,7 +26,7 @@ export function NewCategory({ type }: NewCategoryProps) {
           <Plus /> Add a new category
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-h-11/12 overflow-y-scroll">
+      <DialogContent className=" max-h-11/12 overflow-y-scroll">
         <DialogHeader>
           <DialogTitle>
             Create a new <span className="text-blue-500">Category</span>

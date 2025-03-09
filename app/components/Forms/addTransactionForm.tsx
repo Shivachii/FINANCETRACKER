@@ -74,13 +74,13 @@ const AddTransactionForm = ({ type }: AddTransactionFormProps) => {
       onSubmit={handleCreateTransaction}
       className="grid gap-4 py-4"
     >
-      <div className="grid grid-cols-2 items-center gap-4">
+      <div className="grid md:grid-cols-2 items-center gap-4">
         <Label htmlFor="description" className="text-right">
           Transaction Description
         </Label>
         <Input id="description" name="description" className="col-span-3" />
       </div>
-      <div className="grid grid-cols-2 items-center gap-4">
+      <div className="grid md:grid-cols-2 items-center gap-4">
         <Label htmlFor="amount" className="text-right">
           Transaction Amount
         </Label>

@@ -14,7 +14,7 @@ import {
   CommandGroup,
   CommandItem,
 } from "@/components/ui/command";
-import { ChevronDown, RefreshCcw } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { NewCategory } from "../CategoryDialog/categoryDialog";
@@ -38,7 +38,7 @@ export default function CategoryPicker({
   selectedCategoryName,
   type,
 }: CategoryPickerProps) {
-  const { data, isRefetching, isPending, isError, error, refetch } = useQuery({
+  const { data, isPending, isError, error } = useQuery({
     queryKey: ["getCategories", type], // Add type to query key
     queryFn: async () => {
       return await getCategories(type);
@@ -98,17 +98,6 @@ export default function CategoryPicker({
             <CommandList>
               <CommandEmpty>No categories found.</CommandEmpty>
               <CommandGroup>
-                <div className="flex justify-end">
-                  <Button
-                    className="w-8 h-8"
-                    onClick={() => refetch} // Use refetch
-                    disabled={isRefetching}
-                  >
-                    <RefreshCcw
-                      className={` ${isRefetching ? "animate-spin" : ""}`}
-                    />
-                  </Button>
-                </div>
                 {categories.map((category) => (
                   <CommandItem
                     key={category.name}
@@ -123,10 +112,10 @@ export default function CategoryPicker({
                 ))}
               </CommandGroup>
             </CommandList>
+            <NewCategory type={type} />
           </Command>
         </PopoverContent>
       </Popover>
-      <NewCategory type={type} />
     </div>
   );
 }
