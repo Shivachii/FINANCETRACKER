@@ -5,7 +5,7 @@ export default function HomeLayout({ children }: { children: ReactNode }) {
   return (
     <div className=" flex  w-full">
       <Navbar />
-      <main className="flex-1  container mx-auto px-4 py-5">{children}</main>
+      <main className="flex-1  container mx-auto px-4 py-5 ">{children}</main>
     </div>
   );
 }

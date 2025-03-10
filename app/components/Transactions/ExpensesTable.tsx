@@ -9,51 +9,47 @@ import { RefreshCcw } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
 export default function ExpensesDataTable() {
-  const { isPending, isError, data, error, isFetching, isSuccess, refetch } =
-    useQuery({
-      queryKey: ["getExpenses"],
-      queryFn: getExpenses,
-    });
+  const { isPending, isError, data, error, isFetching, refetch } = useQuery({
+    queryKey: ["getExpenses"],
+    queryFn: getExpenses,
+  });
 
   if (isPending) {
     return (
-      <div className="container mx-auto py-6">
-        <div className="font-semibold text-gray-600 mx-5 animate-pulse">
+      <div className="flex flex-col items-center justify-center py-6">
+        <div className="font-semibold text-gray-600 animate-pulse mb-4">
           Loading Expenses...
         </div>
-        <SkeletonLoader />
+        <SkeletonLoader className="w-full max-w-4xl h-[300px]" />
       </div>
     );
   }
 
   if (isError) {
     return (
-      <div className="container mx-auto py-6">
-        <div>Error: {error?.message || "An error occurred"}</div>
-      </div>
-    );
-  }
-
-  if (isSuccess) {
-    return (
-      <div className="w-full py-6">
-        <Button onClick={() => refetch()} disabled={isFetching}>
-          <RefreshCcw className={`${isFetching ? "animate-spin" : ""}`} />
-          {isFetching ? (
-            <span className="">Refreshing ...</span>
-          ) : (
-            <span>Refresh</span>
-          )}
+      <div className="flex flex-col items-center justify-center py-6 text-red-500">
+        <p className="font-semibold">
+          {error?.message || "An unexpected error occurred."}
+        </p>
+        <Button onClick={() => refetch()} className="mt-4">
+          <RefreshCcw className="mr-2" /> Retry
         </Button>
-        <DataTable columns={columns} data={data?.allExpenses || []} />
       </div>
     );
   }
 
-  // Add a fallback in case of unexpected states
   return (
-    <div className="text-center font-bold">
-      Sorry an un expected error occurred. Please Try again later
+    <div className="w-full py-6">
+      <Button
+        onClick={() => refetch()}
+        disabled={isFetching}
+        className="mb-4 flex items-center gap-2"
+      >
+        <RefreshCcw className={isFetching ? "animate-spin" : ""} />
+        {isFetching ? "Refreshing..." : "Refresh"}
+      </Button>
+
+      <DataTable columns={columns} data={data?.allExpenses || []} />
     </div>
   );
 }

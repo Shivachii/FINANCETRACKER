@@ -52,6 +52,12 @@ const AddTransactionForm = ({ type }: AddTransactionFormProps) => {
       await queryClient.invalidateQueries({
         queryKey: ["expensesAggregate"],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ["expenseByCategory"],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ["incomeByCategory"],
+      });
     },
   });
 

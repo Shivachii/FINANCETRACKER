@@ -4,6 +4,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "sonner";
 import TanstackQueryProvider from "./providers/tanstackProvider";
+import { ThemeProvider } from "./providers/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +30,11 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased `}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 `}
         >
-          <TanstackQueryProvider>{children}</TanstackQueryProvider>
+          <ThemeProvider>
+            <TanstackQueryProvider>{children}</TanstackQueryProvider>
+          </ThemeProvider>
           <Toaster richColors position="bottom-right" />
         </body>
       </html>

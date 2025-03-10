@@ -36,6 +36,12 @@ export default function DeleteCategory<TData extends { name: string }, TValue>({
       await queryClient.invalidateQueries({
         queryKey: ["getAllCategories"],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ["incomeByCategory"],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ["expenseByCategory"],
+      });
     },
   });
 

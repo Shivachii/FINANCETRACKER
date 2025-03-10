@@ -93,13 +93,4 @@ export const columns: ColumnDef<Transactions>[] = [
       );
     },
   },
-  {
-    accessorKey: "categoryIcon",
-    header: () => <div className="text-center">Category Icon</div>,
-    cell: ({ row }) => {
-      const categoryIcon = row.getValue("categoryIcon") as string;
-
-      return <div className="text-center font-medium">{categoryIcon}</div>;
-    },
-  },
 ];

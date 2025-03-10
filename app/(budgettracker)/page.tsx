@@ -4,7 +4,8 @@ import { Totals } from "../components/Totals/Totals";
 import { Button } from "@/components/ui/button";
 import ExpensesDataTable from "../components/Transactions/ExpensesTable";
 import IncomesDataTable from "../components/Transactions/IncomesTable";
-// import { TransactionsBarChart } from "../components/Charts/BarChart";
+import ExpensesByCategory from "../components/Totals/ByCategory/Expense";
+import IncomesByCategory from "../components/Totals/ByCategory/Income";
 
 export default async function Home() {
   const user = await currentUser();
@@ -16,7 +17,7 @@ export default async function Home() {
   return (
     <main className="p-4 sm:p-6 md:p-8 flex flex-col gap-6 w-full">
       {/* WELCOME MESSAGE */}
-      <div className="text-xl md:text-3xl flex flex-wrap items-center gap-4 justify-between">
+      <div className=" text-xl md:text-3xl flex flex-wrap items-center gap-4 justify-between">
         <span className="font-bold">
           Hello {user?.firstName} 👋, welcome back
         </span>
@@ -47,15 +48,12 @@ export default async function Home() {
         <Totals />
       </div>
 
-      <h1 className="text-2xl md:text-3xl font-bold">Overview</h1>
+      <h1 className=" text-2xl md:text-3xl font-bold">Overview</h1>
 
-      {/* INTERPRETATION */}
-      {/* <div>
-      <h1 className="font-bold underline underline-offset-8 decoration-2">
-        Your Stats
-      </h1>
-      <TransactionsBarChart />
-    </div> */}
+      <div className="flex flex-col md:flex-row gap-3">
+        <IncomesByCategory />
+        <ExpensesByCategory />
+      </div>
 
       <div className="flex flex-col gap-6">
         {/* Transaction History */}
