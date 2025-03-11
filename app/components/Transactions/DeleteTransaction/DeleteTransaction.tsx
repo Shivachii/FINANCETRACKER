@@ -4,6 +4,16 @@ import { ColumnDef } from "@tanstack/react-table";
 import deleteTransactions from "@/app/actions/deleteTransactions";
 import { toast } from "sonner";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface Props<TData extends { id: string }, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -40,6 +50,12 @@ export default function DeleteTransaction<
       await queryClient.invalidateQueries({
         queryKey: ["getExpenses"],
       });
+      await queryClient.invalidateQueries({
+        queryKey: ["incomeByCategory"],
+      });
+      await queryClient.invalidateQueries({
+        queryKey: ["expenseByCategory"],
+      });
     },
   });
 
@@ -49,11 +65,30 @@ export default function DeleteTransaction<
   };
 
   return (
-    <Button
-      onClick={handleDelete}
-      disabled={deleteTransactionMutation.isPending}
-    >
-      {deleteTransactionMutation.isPending ? "Deleting..." : "DELETE?"}
-    </Button>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Delete?</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogDescription>
+            {" "}
+            This operation is <span className="text-red-500">irreversible</span>
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button
+            onClick={handleDelete}
+            disabled={deleteTransactionMutation.isPending}
+          >
+            {deleteTransactionMutation.isPending ? "Deleting..." : "Continue?"}
+          </Button>
+          <DialogClose asChild>
+            <Button type="button">Close</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }

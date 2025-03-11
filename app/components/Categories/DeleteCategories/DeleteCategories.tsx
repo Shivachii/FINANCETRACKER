@@ -1,4 +1,14 @@
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 import { ColumnDef } from "@tanstack/react-table";
 
@@ -51,8 +61,30 @@ export default function DeleteCategory<TData extends { name: string }, TValue>({
   };
 
   return (
-    <Button onClick={handleDelete} disabled={deleteCategoryMutation.isPending}>
-      {deleteCategoryMutation.isPending ? "Deleting..." : "DELETE?"}
-    </Button>
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>Delete?</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you sure?</DialogTitle>
+          <DialogDescription>
+            {" "}
+            This operation is <span className="text-red-500">irreversible</span>
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <Button
+            onClick={handleDelete}
+            disabled={deleteCategoryMutation.isPending}
+          >
+            {deleteCategoryMutation.isPending ? "Deleting..." : "Continue?"}
+          </Button>
+          <DialogClose asChild>
+            <Button type="button">Close</Button>
+          </DialogClose>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
