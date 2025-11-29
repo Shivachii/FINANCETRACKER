@@ -49,9 +49,9 @@ npm install
 
 ### Set up environment variables:
 
-- DATABASE_URL=<your-database-url>
-- CLERK_FRONTEND_API=<your-clerk-frontend-api>
-- CLERK_API_KEY=<your-clerk-api-key>
+- DATABASE_URL= <your-database-url>
+- CLERK_FRONTEND_API= <your-clerk-frontend-api>
+- CLERK_API_KEY= <your-clerk-api-key>
 
 
 ### Run migrations (for Prisma):
